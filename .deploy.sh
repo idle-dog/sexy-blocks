@@ -4,7 +4,7 @@
 fis release -r ./src -Documpd ./output
 
 if [ -d output ]; then
-    # 提交代码至gh-pages分支
+    # 提交代码至gh-pages
     echo "➥ Commit files"
     git clone --quiet --branch=gh-pages https://${GH_TOKEN}@github.com/${REPO_SLUG}.git ${REPO_SLUG} > /dev/null
     rm -rf ${REPO_SLUG}/*
