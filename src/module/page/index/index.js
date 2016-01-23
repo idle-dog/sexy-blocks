@@ -12,11 +12,6 @@ exports.init = function (selector, options) {
         },
         replace: false,
         template: __inline('index.html'),
-        components: {
-            'w-display': require('widget/display'),
-            'w-bgcolor': require('widget/bgcolor'),
-            'w-textarea': require('widget/textarea'),
-            'w-toolbar': require('widget/toolbar')
-        }
+        components: {}
     });
 };
