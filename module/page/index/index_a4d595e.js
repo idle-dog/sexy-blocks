@@ -1,0 +1,1 @@
+define("page/index",function(e,t){t.init=function(t){new Vue({el:t,data:function(){return{content:"写些你想说的话,\n用换行排列小人!",scale:1,color:"#FC7D63"}},replace:!1,template:'<div class="p-index">\n    <h1>性感积木</h1>\n</div>\n',components:{"w-display":e("widget/display"),"w-bgcolor":e("widget/bgcolor"),"w-textarea":e("widget/textarea"),"w-toolbar":e("widget/toolbar")}})}});
