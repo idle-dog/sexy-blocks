@@ -160,6 +160,7 @@ Display.prototype._addCube = function( intersect ){
         position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
         if(
             position.y <  0         ||
+            position.y >  this.size ||
             position.x >  this.size ||
             position.z >  this.size ||
             position.z < -this.size ||
