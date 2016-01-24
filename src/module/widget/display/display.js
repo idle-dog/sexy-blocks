@@ -4,6 +4,7 @@ var Display = function(size, step, vm){
     this.step = step || 50;
     this.objects = [];
     this._dragging = 0;
+    this._previewing = false;
 };
 
 Display.CUBE_TEXTURE = THREE.ImageUtils.loadTexture( __uri('./cube_texture.png') );
@@ -18,6 +19,26 @@ Display.prototype.init = function(el){
     this._initLight();
     this._initRender();
     this._bindEvents();
+    this.render();
+};
+
+Display.prototype.preview = function(){
+    this._previewing = !this._previewing;
+    this._rotate = Math.atan2( this.camera.position.z, this.camera.position.x );
+    this._play();
+};
+
+Display.prototype._play = function(){
+    if(!this._previewing) return;
+    requestAnimationFrame( this._play.bind(this) );
+    this._rotate -= 0.005;
+    var position = this.camera.position;
+    var r = Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.z, 2));
+    var x = Math.cos(this._rotate) * r;
+    var z = Math.sin(this._rotate) * r;
+    var y = position.y;
+    position.set(x, y, z);
+    this.camera.lookAt( new THREE.Vector3() );
     this.render();
 };
 
@@ -85,20 +106,20 @@ Display.prototype.render = function(){
     this.renderer.render( this.scene, this.camera );
 };
 
-Display.prototype._bind = function(host, type, fn){
-    var self = this;
+Display.prototype._bind = function(host, type, fn, stopOnPreview){
     return host.addEventListener(type, function( event ){
         event.preventDefault();
-        fn.call( self, event );
-        self.render();
-    }, false);
+        if(stopOnPreview && this._previewing) return;
+        fn.call( this, event );
+        this.render();
+    }.bind(this), false);
 };
 
 Display.prototype._bindEvents = function(){
     this._bind(window, 'resize', this._onWindowResize);
-    this._bind(this.container, 'touchstart', this._onTouchStart);
-    this._bind(this.container, 'touchmove', this._onTouchMove);
-    this._bind(this.container, 'touchend', this._onTouchEnd);
+    this._bind(this.container, 'touchstart', this._onTouchStart, true);
+    this._bind(this.container, 'touchmove', this._onTouchMove, true);
+    this._bind(this.container, 'touchend', this._onTouchEnd, true);
 };
 
 Display.prototype._onWindowResize = function(){
@@ -206,5 +227,10 @@ module.exports = Vue.extend({
         }
         this.display = new Display(500, 50, this);
         this.display.init(this.$el.querySelector('.w-display_viewer'));
+    },
+    methods: {
+        onPreview: function(){
+            this.display.preview();
+        }
     }
 });
