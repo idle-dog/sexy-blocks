@@ -31,7 +31,7 @@ Display.prototype.preview = function(){
 Display.prototype._play = function(){
     if(!this._previewing) return;
     requestAnimationFrame( this._play.bind(this) );
-    this._rotate -= 0.005;
+    this._rotate -= 0.01;
     var position = this.camera.position;
     var r = Math.sqrt(Math.pow(position.x, 2) + Math.pow(position.z, 2));
     var x = Math.cos(this._rotate) * r;
