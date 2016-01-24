@@ -1,0 +1,1 @@
+define("page/index",function(n,i){i.init=function(i){new Vue({el:i,data:function(){return{content:"写些你想说的话,\n用换行排列小人!",scale:1,color:"#FC7D63"}},replace:!1,template:'<div class="p-index">\n    <div class="p-display">\n        <x-display></x-display>\n    </div>\n</div>\n',components:{"x-display":n("widget/display")}})}});
