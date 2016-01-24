@@ -1,0 +1,12 @@
+<div class="w-display">
+    <div class="w-display_viewer"></div>
+    <div class="w-display_toolbar">
+        <label v-for="c in colors">
+            <input type="radio" :value="c.value" v-model="color">
+            <span>{{ c.text }}</span>
+        </label>
+        <label>
+            <input type="checkbox" v-model="earse"> 删除模式
+        </label>
+    </div>
+</div>

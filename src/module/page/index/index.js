@@ -12,6 +12,8 @@ exports.init = function (selector, options) {
         },
         replace: false,
         template: __inline('index.html'),
-        components: {}
+        components: {
+            'x-display': require('widget/display')
+        }
     });
 };
