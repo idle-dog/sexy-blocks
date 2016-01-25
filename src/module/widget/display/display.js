@@ -181,11 +181,11 @@ Display.prototype._addCube = function( intersect ){
         position.copy( intersect.point ).add( intersect.face.normal );
         position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
         if(
-            position.y <  0         ||
-            position.y >  this.size ||
-            position.x >  this.size ||
-            position.z >  this.size ||
-            position.z < -this.size ||
+            position.y <  0             ||
+            position.y >  this.size * 2 ||
+            position.x >  this.size     ||
+            position.z >  this.size     ||
+            position.z < -this.size     ||
             position.x < -this.size
         ){
             return;
