@@ -4,7 +4,6 @@ var Display = function(size, step, vm){
     this.step = step || 50;
     this.objects = [];
     this._dragging = 0;
-    this._previewing = false;
 };
 
 Display.CUBE_TEXTURE = THREE.ImageUtils.loadTexture( __uri('./cube_texture.png') );
@@ -23,13 +22,13 @@ Display.prototype.init = function(el){
 };
 
 Display.prototype.preview = function(){
-    this._previewing = !this._previewing;
+    this.vm.preview = !this.vm.preview;
     this._rotate = Math.atan2( this.camera.position.z, this.camera.position.x );
     this._play();
 };
 
 Display.prototype._play = function(){
-    if(!this._previewing) return;
+    if(!this.vm.preview) return;
     requestAnimationFrame( this._play.bind(this) );
     this._rotate -= 0.01;
     var position = this.camera.position;
@@ -109,14 +108,16 @@ Display.prototype.render = function(){
 Display.prototype._bind = function(host, type, fn, stopOnPreview){
     return host.addEventListener(type, function( event ){
         event.preventDefault();
-        if(stopOnPreview && this._previewing) return;
+        if(stopOnPreview && this.vm.preview) return;
         fn.call( this, event );
         this.render();
     }.bind(this), false);
 };
 
 Display.prototype._bindEvents = function(){
+    var noop = new Function;
     this._bind(window, 'resize', this._onWindowResize);
+    this._bind(this.container, 'mousewheel', noop);
     this._bind(this.container, 'touchstart', this._onTouchStart, true);
     this._bind(this.container, 'touchmove', this._onTouchMove, true);
     this._bind(this.container, 'touchend', this._onTouchEnd, true);
@@ -209,6 +210,8 @@ module.exports = Vue.extend({
         return {
             color: '#f00',
             earse: false,
+            preview: false,
+            pick: false,
             colors: [
                 { value: '#f00', text: '红色' },
                 { value: '#0f0', text: '绿色' },
@@ -229,8 +232,20 @@ module.exports = Vue.extend({
         this.display.init(this.$el.querySelector('.w-display_viewer'));
     },
     methods: {
-        onPreview: function(){
+        onToggleEarseMode: function(){
+            this.earse = !this.earse;
+        },
+        onTogglePreviewMode: function(){
             this.display.preview();
+        },
+        onTogglePickMode: function(){
+            this.pick = !this.pick;
+        },
+        onShare: function(){
+            alert('敬请期待!');
+        },
+        onPick: function(color){
+            this.color = color;
         }
     }
 });
