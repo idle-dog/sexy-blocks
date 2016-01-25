@@ -2,24 +2,24 @@
     <div class="w-display_viewer"></div>
     <div class="w-display_toolbar" :class="{ 'w-display_toolbar_preview': preview, 'w-display_toolbar_earse': earse }">
         <div class="w-display_btn w-display_del"
-             @click="onToggleEarseMode">
+             @touchstart="onToggleEarseMode">
             <i class="iconfont icon-delete"></i>
         </div>
         <div class="w-display_btn w-display_color"
              :class="{ 'w-display_color_pick': pick }"
-             @click="onTogglePickMode">
+             @touchstart="onTogglePickMode">
             <i class="iconfont icon-box-solid" :style="{ color: color }"></i>
             <div class="w-display_colors">
-                <div class="w-display_c" v-for="c in colors" @click="onPick(c.value)">
+                <div class="w-display_c" v-for="c in colors" @touchstart="onPick(c.value)">
                     <i class="iconfont icon-box-solid" :style="{ color: c.value }"></i>
                 </div>
             </div>
         </div>
-        <div class="w-display_btn w-display_share" @click="onShare">
+        <div class="w-display_btn w-display_share" @touchstart="onShare">
             <i class="iconfont icon-share"></i>
         </div>
         <div class="w-display_btn w-display_play"
-            @click="onTogglePreviewMode">
+            @touchstart="onTogglePreviewMode">
             <i class="iconfont" :class="{ 'icon-play': !preview, 'icon-pause': preview }"></i>
         </div>
     </div>
