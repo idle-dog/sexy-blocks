@@ -233,13 +233,17 @@ module.exports = Vue.extend({
     },
     methods: {
         onToggleEarseMode: function(){
-            this.earse = !this.earse;
+            this.earse = true;
+            this.pick = false;
+        },
+        onTogglePickMode: function(){
+            if(!this.earse){
+                this.pick = !this.pick;
+            }
+            this.earse = false;
         },
         onTogglePreviewMode: function(){
             this.display.preview();
-        },
-        onTogglePickMode: function(){
-            this.pick = !this.pick;
         },
         onShare: function(){
             alert('敬请期待!');

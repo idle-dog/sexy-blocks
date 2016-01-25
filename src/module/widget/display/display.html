@@ -1,8 +1,7 @@
 <div class="w-display">
     <div class="w-display_viewer"></div>
-    <div class="w-display_toolbar" :class="{ 'w-display_toolbar_preview': preview }">
+    <div class="w-display_toolbar" :class="{ 'w-display_toolbar_preview': preview, 'w-display_toolbar_earse': earse }">
         <div class="w-display_btn w-display_del"
-             :class="{ 'w-display_btn-del_on': earse }"
              @click="onToggleEarseMode">
             <i class="iconfont icon-delete"></i>
         </div>
