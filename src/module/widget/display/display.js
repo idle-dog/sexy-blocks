@@ -208,19 +208,23 @@ module.exports = Vue.extend({
     template: __inline('./display.html'),
     data: function(){
         return {
-            color: '#f00',
+            color: '#d71b1e',
             earse: false,
             preview: false,
             pick: false,
             colors: [
-                { value: '#f00', text: '红色' },
-                { value: '#0f0', text: '绿色' },
-                { value: '#00f', text: '蓝色' },
-                { value: '#ff0', text: '黄色' },
-                { value: '#f0f', text: '紫色' },
-                { value: '#0ff', text: '青色' },
-                { value: '#fff', text: '白色' },
-                { value: '#000', text: '黑色' }
+                { value: '#d71b1e', text: '红色' },
+                { value: '#ffffc5', text: '米色' },
+                { value: '#86dc00', text: '绿色' },
+                { value: '#ffec00', text: '黄色' },
+                { value: '#12cfd0', text: '青色' },
+                { value: '#ff8e00', text: '橙色' },
+                { value: '#2b99e6', text: '蓝色' },
+                { value: '#ff8ced', text: '紫色' },
+                { value: '#fcfcfc', text: '白色' },
+                { value: '#000000', text: '黑色' },
+                { value: '#818699', text: '灰色' },
+                { value: '#9e530f', text: '棕色' },
             ]
         }
     },

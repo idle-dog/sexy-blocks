@@ -108,15 +108,15 @@
 }
 
 .w-display_color_pick .w-display_colors {
-    width: 240px;
+    width: 300px;
     opacity: 1;
 }
 
 .w-display_c {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
     text-align: center;
     color: #2c3e50;
     border-radius: 100%;
